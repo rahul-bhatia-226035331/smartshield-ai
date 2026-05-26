@@ -23,7 +23,7 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                bat 'trivy image smartshield-ai'
+                bat '"C:\\Users\\rahul\\AppData\\Local\\Microsoft\\WinGet\\Links\\trivy.exe" image smartshield-ai'
             }
         }
 
