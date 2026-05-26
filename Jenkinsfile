@@ -17,13 +17,13 @@ pipeline {
 
         stage('Code Quality') {
             steps {
-                echo 'Code quality analysis completed'
+                bat 'mvn checkstyle:check'
             }
         }
 
         stage('Security Scan') {
             steps {
-                echo 'Security scan completed'
+                bat 'trivy image smartshield-ai'
             }
         }
 
@@ -35,13 +35,21 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Application deployed to Docker container'
+                bat 'docker stop smartshield-container || exit 0'
+                bat 'docker rm smartshield-container || exit 0'
+                bat 'docker run -d -p 8082:8081 --name smartshield-container smartshield-ai'
+            }
+        }
+
+        stage('Release') {
+            steps {
+                bat 'git tag v1.0.%BUILD_NUMBER%'
             }
         }
 
         stage('Monitoring') {
             steps {
-                echo 'Monitoring and alerting configured'
+                bat 'curl http://localhost:8082/actuator/health'
             }
         }
     }

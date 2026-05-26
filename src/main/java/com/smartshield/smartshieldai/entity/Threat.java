@@ -3,7 +3,6 @@ package com.smartshield.smartshieldai.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "threats")
 public class Threat {
 
     @Id
@@ -11,18 +10,16 @@ public class Threat {
     private Long id;
 
     private String threatName;
-
     private String severity;
-
-    private String location;
+    private String status;
 
     public Threat() {
     }
 
-    public Threat(String threatName, String severity, String location) {
+    public Threat(String threatName, String severity, String status) {
         this.threatName = threatName;
         this.severity = severity;
-        this.location = location;
+        this.status = status;
     }
 
     public Long getId() {
@@ -45,11 +42,11 @@ public class Threat {
         this.severity = severity;
     }
 
-    public String getLocation() {
-        return location;
+    public String getStatus() {
+        return status;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
