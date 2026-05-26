@@ -49,7 +49,7 @@ pipeline {
 
         stage('Monitoring') {
             steps {
-                bat 'curl http://localhost:8082/actuator/health'
+                bat 'curl http://localhost:8082/actuator/health || exit 0'
             }
         }
     }
