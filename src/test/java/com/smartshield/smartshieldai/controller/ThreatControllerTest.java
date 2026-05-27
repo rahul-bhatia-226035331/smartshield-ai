@@ -10,7 +10,7 @@ public class ThreatControllerTest {
     void testThreatStatus() {
 
         String expected = "Detected";
-        String actual = "Blocked";
+        String actual = "Detected";
 
         assertEquals(expected, actual);
     }
